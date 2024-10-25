@@ -1,0 +1,38 @@
+name: Data Collection and Website Deployment
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour at minute 0
+  workflow_dispatch:      # Allows manual triggering
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run data collection script
+        run: |
+          python funding_data_collector.py
+
+      - name: Generate website files
+        run: |
+          python generate_website.py
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
