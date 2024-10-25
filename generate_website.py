@@ -12,8 +12,11 @@ def generate_website():
     # Convert 'time' to datetime, ensuring it's timezone-aware
     df['time'] = pd.to_datetime(df['time'], unit='ms', utc=True)
 
-    # Get the latest timestamp
+    # Get the latest timestamp from the data (exchange's timestamp)
     latest_time = df['time'].max()
+
+    # Get the current time (when the script finishes executing)
+    current_time = datetime.now(timezone.utc)
 
     # Filter data for the latest time
     df_latest = df[df['time'] == latest_time].copy()
@@ -46,6 +49,7 @@ def generate_website():
     # Prepare data for JSON output
     data = {
         'timestamp': latest_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
+        'generated_at': current_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
         'avg_funding_rates': df_avg.to_dict(orient='records'),
     }
 
