@@ -63,8 +63,11 @@ function populateTable(tableId, dataArray, rateKey) {
 
 $(document).ready(function () {
     $.getJSON('funding_data.json', function (data) {
-        // Update the timestamp
+        // Update the data timestamp (from exchange)
         $('#timestamp').text(data.timestamp);
+
+        // Update the generated_at timestamp (when the script finished executing)
+        $('#generated_at').text(data.generated_at);
 
         // Populate the average funding rates table
         populateAvgTable('#averageFundingTable', data.avg_funding_rates);
