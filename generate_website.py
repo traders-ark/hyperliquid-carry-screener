@@ -9,22 +9,22 @@ def generate_website():
     # Ensure 'fundingRate' is numeric
     df['fundingRate'] = pd.to_numeric(df['fundingRate'], errors='coerce')
 
-    # Convert 'time' to datetime
-    df['time'] = pd.to_datetime(df['time'], unit='ms')
+    # Convert 'time' to datetime, ensuring it's timezone-aware
+    df['time'] = pd.to_datetime(df['time'], unit='ms', utc=True)
 
     # Get the latest timestamp
     latest_time = df['time'].max()
 
-    # Filter data for the latest hour
+    # Filter data for the latest time
     df_latest = df[df['time'] == latest_time]
 
     # Calculate funding rate percentage
     df_latest['fundingRate_percent'] = df_latest['fundingRate'] * 100
 
     # Calculate average funding rates over N days
-    N = 3
-    start_time = latest_time - timedelta(days=N)
-    df_past_N_days = df[df['time'] >= start_time]
+    N_avg = 3  # Number of days for average calculation
+    start_time_avg = latest_time - timedelta(days=N_avg)
+    df_past_N_days = df[df['time'] >= start_time_avg]
 
     # Group by 'coin' and calculate the average funding rate
     df_avg = df_past_N_days.groupby('coin').agg(
