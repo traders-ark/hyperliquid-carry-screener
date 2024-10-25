@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funding Rates Screener</title>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css"/>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<h1>Funding Rates Screener</h1>
+<p>Last updated: <span id="timestamp"></span></p>
+
+<h2>Current Positive Funding Rates</h2>
+<table id="positiveCurrentTable" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Coin</th>
+        <th>Funding Rate (% over 8h)</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<h2>Current Negative Funding Rates</h2>
+<table id="negativeCurrentTable" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Coin</th>
+        <th>Funding Rate (% over 8h)</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<h2>Average Positive Funding Rates Over Past 3 Days</h2>
+<table id="positiveAvgTable" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Coin</th>
+        <th>Average Funding Rate (% over 8h)</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<h2>Average Negative Funding Rates Over Past 3 Days</h2>
+<table id="negativeAvgTable" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Coin</th>
+        <th>Average Funding Rate (% over 8h)</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<!-- Custom JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
