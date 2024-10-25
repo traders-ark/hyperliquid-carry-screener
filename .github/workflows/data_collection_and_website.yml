@@ -1,12 +1,7 @@
 name: Data Collection and Website Deployment
 
 on:
-  schedule:
-    - cron: '1 * * * *'  # Runs every hour at minute 1
-  push:
-    branches:
-      - main
-  workflow_dispatch:      # Allows manual triggering
+  workflow_dispatch:  # Allows manual and external triggering
 
 permissions:
   contents: write
