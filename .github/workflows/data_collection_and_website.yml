@@ -2,7 +2,10 @@ name: Data Collection and Website Deployment
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour at minute 0
+    - cron: '1 * * * *'  # Runs every hour at minute 1
+  push:
+    branches:
+      - main
   workflow_dispatch:      # Allows manual triggering
 
 permissions:
@@ -38,7 +41,7 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add funding_data_all_coins.csv
+          git add funding_data_all_coins.csv docs/funding_data_all_coins.csv docs/funding_data.json
           git commit -m "Update funding data [skip ci]" || echo "No changes to commit"
           git push origin main
 
