@@ -26,6 +26,7 @@ def generate_website():
 
     # Calculate average funding rates over N days
     N_avg = 3  # Number of days for average calculation
+    required_data_points = 72  # Number of data points required for average calculation
     start_time_avg = latest_time - timedelta(days=N_avg)
     df_past_N_days = df[df['time'] >= start_time_avg]
 
@@ -37,35 +38,40 @@ def generate_website():
 
     for coin in all_coins:
         df_coin = df_past_N_days[df_past_N_days['coin'] == coin]
-        if df_coin.empty or df_coin['time'].min() > start_time_avg:
-            # Not enough data for this coin
-            avg_rate = None
-        else:
+        if len(df_coin) >= required_data_points:
             avg_rate = df_coin['fundingRate'].mean() * 100  # Convert to percentage
-        avg_funding_rates.append({'coin': coin, 'fundingRate_percent_avg': avg_rate})
+            avg_funding_rates.append({'coin': coin, 'fundingRate_percent_avg': avg_rate})
+        else:
+            # Not enough data for this coin
+            avg_funding_rates.append({'coin': coin, 'fundingRate_percent_avg': None})
 
     df_avg = pd.DataFrame(avg_funding_rates)
 
-    # Prepare data for JSON output
-    data = {
-        'timestamp': latest_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
-        'generated_at': current_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
-        'avg_funding_rates': df_avg.to_dict(orient='records'),
-    }
+    # Separate positive and negative average funding rates
+    df_positive_avg = df_avg[df_avg['fundingRate_percent_avg'] > 0]
+    df_negative_avg = df_avg[df_avg['fundingRate_percent_avg'] < 0]
+
+    # Sort the tables
+    df_positive_avg = df_positive_avg.sort_values(by='fundingRate_percent_avg', ascending=False)
+    df_negative_avg = df_negative_avg.sort_values(by='fundingRate_percent_avg', ascending=True)
 
     # Separate positive and negative funding rates for current data
     df_positive_current = df_latest[df_latest['fundingRate_percent'] > 0]
     df_negative_current = df_latest[df_latest['fundingRate_percent'] < 0]
 
-    # Sort the tables
+    # Sort the current funding rate tables
     df_positive_current = df_positive_current.sort_values(by='fundingRate_percent', ascending=False)
     df_negative_current = df_negative_current.sort_values(by='fundingRate_percent', ascending=True)
 
     # Prepare data for JSON output
-    data.update({
+    data = {
+        'timestamp': latest_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
+        'generated_at': current_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
+        'positive_avg': df_positive_avg[['coin', 'fundingRate_percent_avg']].to_dict(orient='records'),
+        'negative_avg': df_negative_avg[['coin', 'fundingRate_percent_avg']].to_dict(orient='records'),
         'positive_current': df_positive_current[['coin', 'fundingRate_percent']].to_dict(orient='records'),
         'negative_current': df_negative_current[['coin', 'fundingRate_percent']].to_dict(orient='records'),
-    })
+    }
 
     # Save the data to a JSON file
     with open('docs/funding_data.json', 'w') as f:
