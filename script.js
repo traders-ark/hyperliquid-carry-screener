@@ -69,8 +69,9 @@ $(document).ready(function () {
         // Update the generated_at timestamp (when the script finished executing)
         $('#generated_at').text(data.generated_at);
 
-        // Populate the average funding rates table
-        populateAvgTable('#averageFundingTable', data.avg_funding_rates);
+        // Populate the average funding rates tables
+        populateAvgTable('#positiveAvgTable', data.positive_avg);
+        populateAvgTable('#negativeAvgTable', data.negative_avg);
 
         // Populate current funding rate tables
         populateTable('#positiveCurrentTable', data.positive_current, 'fundingRate_percent');
