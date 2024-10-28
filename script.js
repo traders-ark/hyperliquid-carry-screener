@@ -24,10 +24,16 @@ function populateAvgTable(tableId, dataArray) {
     });
     // Initialize DataTable if not already initialized
     if (!$.fn.DataTable.isDataTable(tableId)) {
+        // Determine sort order based on tableId
+        var sortOrder = [[1, 'desc']]; // Default for positive tables
+        if (tableId.includes('negative')) {
+            sortOrder = [[1, 'asc']]; // Ascending for negative tables
+        }
+        
         $(tableId).DataTable({
             paging: false,
             searching: false,
-            order: [[1, 'desc']]
+            order: sortOrder
         });
     }
 }
@@ -53,10 +59,16 @@ function populateTable(tableId, dataArray, rateKey) {
     });
     // Initialize DataTable if not already initialized
     if (!$.fn.DataTable.isDataTable(tableId)) {
+        // Determine sort order based on tableId
+        var sortOrder = [[1, 'desc']]; // Default for positive tables
+        if (tableId.includes('negative')) {
+            sortOrder = [[1, 'asc']]; // Ascending for negative tables
+        }
+        
         $(tableId).DataTable({
             paging: false,
             searching: false,
-            order: [[1, 'desc']]
+            order: sortOrder
         });
     }
 }
