@@ -12,17 +12,33 @@
     <p>Data timestamp (from exchange): <span id="timestamp"></span></p>
     <p>Last updated (website): <span id="generated_at"></span></p>
 
-    <!-- Average Funding Rates Table -->
-    <h2>Average Funding Rates Over Past 3 Days</h2>
-    <table id="averageFundingTable" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>Coin</th>
-                <th>Funding Rate (% over 1h)</th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <!-- Average Funding Rates Tables -->
+    <div class="table-container">
+        <div class="table-half">
+            <h2>Average Positive Funding Rates Over Past 3 Days</h2>
+            <table id="positiveAvgTable" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Funding Rate (% over 1h)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="table-half">
+            <h2>Average Negative Funding Rates Over Past 3 Days</h2>
+            <table id="negativeAvgTable" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Funding Rate (% over 1h)</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
 
     <!-- Current Funding Rates Tables -->
     <div class="table-container">
