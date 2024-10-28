@@ -53,7 +53,7 @@ def generate_website():
 
     # Sort the tables
     df_positive_avg = df_positive_avg.sort_values(by='fundingRate_percent_avg', ascending=False)
-    df_negative_avg = df_negative_avg.sort_values(by='fundingRate_percent_avg', descending=True)
+    df_negative_avg = df_negative_avg.sort_values(by='fundingRate_percent_avg', ascending=True)
 
     # Separate positive and negative funding rates for current data
     df_positive_current = df_latest[df_latest['fundingRate_percent'] > 0]
@@ -61,7 +61,7 @@ def generate_website():
 
     # Sort the current funding rate tables
     df_positive_current = df_positive_current.sort_values(by='fundingRate_percent', ascending=False)
-    df_negative_current = df_negative_current.sort_values(by='fundingRate_percent', descending=True)
+    df_negative_current = df_negative_current.sort_values(by='fundingRate_percent', ascending=True)
 
     # Prepare data for JSON output
     data = {
