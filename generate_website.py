@@ -63,18 +63,6 @@ def generate_website():
     df_positive_current = df_positive_current.sort_values(by='fundingRate_percent', ascending=False)
     df_negative_current = df_negative_current.sort_values(by='fundingRate_percent', ascending=True)
 
-    # Prepare funding history data for each coin
-    funding_history = {}
-    df['fundingRate_percent'] = df['fundingRate'] * 100  # Convert to percentage
-    for coin in all_coins:
-        df_coin = df[df['coin'] == coin].copy()
-        df_coin.sort_values('time', inplace=True)
-        funding_history[coin] = {
-            'times': df_coin['time'].dt.strftime('%Y-%m-%d %H:%M:%S').tolist(),
-            'fundingRates': df_coin['fundingRate_percent'].tolist(),
-            'dataPoints': len(df_coin)
-        }
-
     # Prepare data for JSON output
     data = {
         'timestamp': latest_time.strftime('%Y-%m-%d %H:%M:%S UTC'),
@@ -83,7 +71,6 @@ def generate_website():
         'negative_avg': df_negative_avg[['coin', 'fundingRate_percent_avg']].to_dict(orient='records'),
         'positive_current': df_positive_current[['coin', 'fundingRate_percent']].to_dict(orient='records'),
         'negative_current': df_negative_current[['coin', 'fundingRate_percent']].to_dict(orient='records'),
-        'funding_history': funding_history
     }
 
     # Save the data to a JSON file
