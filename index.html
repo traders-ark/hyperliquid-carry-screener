@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
-    <!-- Include Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h1>Hyperliquid Carry Screener</h1>
@@ -18,7 +16,7 @@
     <div class="table-container">
         <div class="table-half">
             <h2>Average 3 Day Positive Funding</h2>
-            <table id="positiveAvgTable" class="display expandable-table" style="width:100%">
+            <table id="positiveAvgTable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Coin</th>
@@ -30,7 +28,7 @@
         </div>
         <div class="table-half">
             <h2>Average 3 Day Negative Funding</h2>
-            <table id="negativeAvgTable" class="display expandable-table" style="width:100%">
+            <table id="negativeAvgTable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Coin</th>
@@ -46,7 +44,7 @@
     <div class="table-container">
         <div class="table-half">
             <h2>Latest Positive Funding</h2>
-            <table id="positiveCurrentTable" class="display expandable-table" style="width:100%">
+            <table id="positiveCurrentTable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Coin</th>
@@ -58,7 +56,7 @@
         </div>
         <div class="table-half">
             <h2>Latest Negative Funding</h2>
-            <table id="negativeCurrentTable" class="display expandable-table" style="width:100%">
+            <table id="negativeCurrentTable" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Coin</th>
