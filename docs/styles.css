@@ -49,16 +49,3 @@ table.dataTable {
 .dataTables_wrapper {
     margin-bottom: 20px;
 }
-
-.details-row {
-    background-color: #f9f9f9;
-}
-
-.chart-container {
-    position: relative;
-    height: 400px;
-}
-
-.expandable-row {
-    cursor: pointer;
-}
