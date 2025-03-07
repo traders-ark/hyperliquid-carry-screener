@@ -224,7 +224,7 @@ def check_missing_data_past_24h(existing_df, coins):
 
 def main():
     # Initialize an empty DataFrame or read existing data
-    filename = 'funding_data_all_coins.csv'
+    filename = 'funding_data_main.csv'
     try:
         existing_df = pd.read_csv(filename)
         print(f"Loaded existing data with {len(existing_df)} rows.")
