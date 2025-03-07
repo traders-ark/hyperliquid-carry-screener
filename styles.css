@@ -1,21 +1,63 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 20px;
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.6;
 }
 
-h1, h2 {
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+h1, h2, h3 {
     text-align: center;
+    font-weight: 600;
+}
+
+h1 {
+    margin-bottom: 0;
+    margin-right: 10px;
+    color: #ffffff;
+    font-size: 2.2em;
+}
+
+h2 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: #f0f0f0;
+    font-size: 1.8em;
+    display: inline-block;
+}
+
+h3 {
+    margin-top: 20px;
+    color: #e0e0e0;
+    font-size: 1.4em;
 }
 
 p {
     text-align: center;
+    margin-bottom: 25px;
 }
 
 .table-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    background-color: #0d0d0d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+    overflow-x: auto;
+    border: 1px solid #838383;
+}
+
+.full-width {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .table-half {
@@ -23,29 +65,582 @@ p {
     box-sizing: border-box;
 }
 
+.heading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.help-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #222222;
+    border: 1px solid #838383;
+    color: #cccccc;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.help-button:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 300px;
+}
+
+.display-mode-container {
+    margin-left: 20px;
+    position: relative;
+}
+
+.display-mode-select {
+    padding: 10px;
+    padding-right: 30px; /* Make room for the arrow */
+    border: 1px solid #838383;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    min-width: 130px;
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: background-color 0.2s;
+}
+
+/* Custom dropdown arrow */
+.display-mode-container::after {
+    content: '▼';
+    font-size: 10px;
+    color: #838383;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Make sure clicks pass through to the select */
+}
+
+.display-mode-select:hover {
+    background-color: #2a2a2a;
+    color: #ffffff;
+}
+
+.display-mode-select:focus {
+    outline: none;
+    border-color: #838383;
+    background-color: #2a2a2a;
+}
+
+.display-mode-select option {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-weight: bold;
+}
+
+#coinSearch {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #838383;
+    border-radius: 4px;
+    font-size: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+#coinSearch::placeholder {
+    color: #888888;
+}
+
+/* Coin link styling - invisible links */
+.coin-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.coin-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* New coin styling - yellowish tint */
+.new-coin {
+    color: rgba(255, 255, 0, 0.8) !important;
+    position: relative;
+}
+
+.new-coin::after {
+    content: " (new)";
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #0d0d0d;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    border: 1px solid #838383;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #888888;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #ffffff;
+}
+
+.modal-content p {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.modal-content ul {
+    margin-bottom: 15px;
+    padding-left: 20px;
+    color: #e0e0e0;
+}
+
+.modal-content li {
+    margin-bottom: 8px;
+}
+
 @media screen and (max-width: 800px) {
+    .title-container {
+        flex-direction: column;
+    }
+    
+    h1 {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
     .table-half {
         width: 100%;
         margin-bottom: 20px;
     }
+    
+    .controls-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-container {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .display-mode-container {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .display-mode-select {
+        width: 100%;
+    }
+    
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+    }
 }
 
-.positive-funding td {
-    background-color: rgba(255, 0, 0, 0.1); /* Low opacity red */
+/* Cell styling for funding rates */
+.positive-rate {
+    color: #fa5000 !important;
+    font-weight: 500;
 }
 
-.negative-funding td {
-    background-color: rgba(0, 255, 0, 0.1); /* Low opacity green */
+.negative-rate {
+    color: #00c807 !important;
+    font-weight: 500;
 }
 
+.no-data {
+    color: #888888;
+    font-style: italic;
+}
+
+/* Examples in the info section */
+.positive-example {
+    color: #fa5000;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+.negative-example {
+    color: #00c807;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 500;
+}
+
+/* DataTable styling */
 table.dataTable thead th {
-    background-color: #f2f2f2;
+    background-color: #0d0d0d;
+    padding: 12px 10px;
+    border-bottom: 1px solid #838383 !important;
+    border-top: 1px solid #838383 !important;
+    font-weight: 600;
+    cursor: pointer;
+    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* Add vertical separator after the first column (Coin names) */
+table.dataTable thead th:first-child,
+table.dataTable tbody td:first-child {
+    border-right: 1px solid #292929 !important;
 }
 
 table.dataTable {
     width: 100% !important;
+    margin-bottom: 15px !important;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: #e0e0e0;
+    border: 1px solid #838383 !important;
 }
 
 .dataTables_wrapper {
     margin-bottom: 20px;
 }
+
+/* Hide the default DataTables search box */
+.dataTables_filter {
+    display: none;
+}
+
+/* Add a subtle border to tables */
+table {
+    border: 1px solid #838383;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Alternating row colors */
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #131313;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: #0d0d0d;
+}
+
+table.dataTable tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #292929 !important; /* Changed row separator color */
+    vertical-align: middle;
+    background-color: transparent !important; /* Override DataTables default */
+}
+
+/* Override any DataTables border styles */
+.dataTables_scrollHead, 
+.dataTables_scrollBody, 
+.dataTables_scrollFoot {
+    border: none !important;
+}
+
+.dataTables_scrollHead {
+    border-bottom: 1px solid #838383 !important;
+}
+
+.dataTables_scrollHeadInner table,
+.dataTables_scrollBody table {
+    border-top: 1px solid #838383 !important;
+    border-bottom: 1px solid #838383 !important;
+}
+
+/* Fix for the header row top border */
+.dataTables_scrollHeadInner thead tr {
+    border-top: 1px solid #838383 !important;
+}
+
+/* Fix for any other potential border issues */
+.dataTables_scrollHeadInner,
+.dataTables_scrollHeadInner table {
+    border-bottom: none !important;
+}
+
+.dataTables_scrollBody,
+.dataTables_scrollBody table {
+    border-top: none !important;
+}
+
+/* Style for timestamp info */
+#timestamp, #generated_at {
+    font-weight: bold;
+    color: #bbbbbb;
+}
+
+/* Info section styling */
+.info-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 0 auto 30px;
+    max-width: 800px;
+}
+
+.info-section p {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+/* Error message styling */
+.error-message {
+    background-color: #3a1212;
+    color: #ff6b6b;
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 4px;
+    max-width: 800px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    border: 1px solid #662222;
+}
+
+/* DataTables info styling */
+.dataTables_info {
+    color: #bbbbbb !important;
+    padding-top: 10px !important;
+}
+
+/* Coin container for button and link */
+.coin-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+/* Coin info button styling */
+.coin-info-button {
+    min-width: 18px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid #838383;
+    color: transparent;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    padding: 0;
+    line-height: 1;
+    flex-shrink: 0;
+    outline: none;
+}
+
+.coin-info-button:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: #ffffff;
+}
+
+.coin-info-button:active {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: #ffffff;
+}
+
+/* Keep button filled in while popup is open */
+.coin-info-button.active {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: #ffffff;
+}
+
+/* Coin info popup styling */
+.coin-info-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.coin-info-popup-content {
+    background-color: #1a1a1a;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #838383;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-type-container {
+    min-width: 120px;
+}
+
+.chart-type-placeholder {
+    min-width: 120px;
+    /* Empty div to balance the layout */
+}
+
+#coinInfoPopupTitle {
+    text-align: center;
+    margin: 0;
+    color: #ffffff;
+    flex-grow: 1;
+}
+
+.chart-type-select {
+    width: 100%;
+    padding: 5px 10px;
+    background-color: #222222;
+    color: #e0e0e0;
+    border: 1px solid #838383;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cccccc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+.chart-type-select:hover {
+    background-color: #333333;
+    border-color: #aaaaaa;
+}
+
+.chart-type-select:focus {
+    outline: none;
+    border-color: #aaaaaa;
+    box-shadow: 0 0 0 2px rgba(170, 170, 170, 0.2);
+}
+
+.chart-type-select option {
+    background-color: #222222;
+    color: #e0e0e0;
+}
+
+.chart-type-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.coin-info-popup-close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -10px;
+    margin-right: -10px;
+}
+
+.coin-info-popup-close:hover,
+.coin-info-popup-close:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#coinInfoPopupContent {
+    margin-top: 10px;
+    color: #e0e0e0;
+}
+
+/* Ensure table cells with coin containers have proper padding */
+table.dataTable tbody td:first-child {
+    padding-right: 10px;
+}
+
+/* Chart container styling */
+.chart-container {
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+/* Loading indicator */
+.chart-loading {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    color: #aaaaaa;
+}
+
+/* Error message */
+.error-message {
+    color: #ff6b6b;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+/* End of added styles */
+
+.chart-range-container {
+    min-width: 120px;
+}
+
+/* Use the same styling as chart-type-select */

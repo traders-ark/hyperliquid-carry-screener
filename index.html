@@ -2,75 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hyperliquid Carry Screener</title>
+    <title>Hyperliquid XS Carry Screener</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Include DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+    <!-- Include DataTables Responsive extension -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for funding history charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Hyperliquid Carry Screener</h1>
+    <div class="title-container">
+        <h1>Hyperliquid XS Carry Screener</h1>
+        <button id="helpBtn" class="help-button" title="About Funding Rates"><i class="fas fa-question"></i></button>
+    </div>
     <p>Data timestamp (from exchange): <span id="timestamp"></span></p>
     <p>Last updated (website): <span id="generated_at"></span></p>
 
-    <!-- Average Funding Rates Tables -->
-    <div class="table-container">
-        <div class="table-half">
-            <h2>Average 3 Day Positive Funding</h2>
-            <table id="positiveAvgTable" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Coin</th>
-                        <th>Funding Rate (% over 1h)</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+    <div class="table-container full-width">
+        <div class="heading-container">
+            <h2>Funding Rates Overview</h2>
         </div>
-        <div class="table-half">
-            <h2>Average 3 Day Negative Funding</h2>
-            <table id="negativeAvgTable" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Coin</th>
-                        <th>Funding Rate (% over 1h)</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+        <div class="controls-container">
+            <div class="search-container">
+                <input type="text" id="coinSearch" placeholder="Search coins...">
+            </div>
+            <div class="display-mode-container">
+                <select id="displayMode" class="display-mode-select">
+                    <option value="apr" selected>Funding APR</option>
+                    <option value="hourly">Funding 1hr</option>
+                </select>
+            </div>
         </div>
+        <table id="fundingTable" class="display responsive nowrap" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Coin</th>
+                    <th>Latest Funding</th>
+                    <th>1-Day Carry</th>
+                    <th>3-Day Carry</th>
+                    <th>5-Day Carry</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
-    <!-- Current Funding Rates Tables -->
-    <div class="table-container">
-        <div class="table-half">
-            <h2>Latest Positive Funding</h2>
-            <table id="positiveCurrentTable" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Coin</th>
-                        <th>Funding Rate (% over 1h)</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div class="table-half">
-            <h2>Latest Negative Funding</h2>
-            <table id="negativeCurrentTable" class="display" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Coin</th>
-                        <th>Funding Rate (% over 1h)</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+    <!-- Help Modal -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>About Funding Rates</h3>
+            <p>Funding rates are payments between traders to keep perpetual contract prices aligned with the index price. Positive rates mean longs pay shorts, negative rates mean shorts pay longs.</p>
+            <p>Display options:</p>
+            <ul>
+                <li><strong>Funding APR</strong>: Shows annualized rates (hourly rate × 24 × 365)</li>
+                <li><strong>Funding 1hr</strong>: Shows hourly rates as they appear on the exchange</li>
+            </ul>
+            <p>Color coding: <span class="positive-example">Positive rates (red i.e. get paid to short)</span> and <span class="negative-example">negative rates (green i.e. get paid to long)</span>.</p>
+            <p>Click on any coin name to go directly to its trading page on Hyperliquid.</p>
         </div>
     </div>
 
     <!-- Include jQuery and DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
