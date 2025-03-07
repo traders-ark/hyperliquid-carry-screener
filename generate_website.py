@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 
 def generate_website():
     # Load the data
-    df = pd.read_csv('funding_data_all_coins.csv')
+    df = pd.read_csv('funding_data_main.csv')
 
     # Ensure 'fundingRate' is numeric
     df['fundingRate'] = pd.to_numeric(df['fundingRate'], errors='coerce')
