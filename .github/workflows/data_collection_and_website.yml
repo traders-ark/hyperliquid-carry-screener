@@ -36,7 +36,8 @@ jobs:
         run: |
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
-          git add funding_data_all_coins.csv docs/
+          # Use -f to ignore errors if files don't exist
+          git add -f funding_data_main.csv docs/ || true
           git commit -m "Update funding data and website files [skip ci]" || echo "No changes to commit"
           git push origin main
 
