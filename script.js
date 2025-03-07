@@ -422,7 +422,7 @@ function loadChartData(coin, range) {
         
         // Now fetch the CSV file to get hourly data
         $.ajax({
-            url: '../funding_data_all_coins.csv', // Try to access the file in the root directory
+            url: 'https://raw.githubusercontent.com/traders-ark/hyperliquid-carry-screener/main/funding_data_main.csv', // Try to access the file in the root directory
             dataType: 'text',
             success: function(csvData) {
                 console.log("CSV data loaded successfully");
