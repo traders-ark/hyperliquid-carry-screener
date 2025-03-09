@@ -1,5 +1,5 @@
 # hyperliquid-carry-screener
-Funding rates are payments between traders to keep perpetual contract prices aligned with the spot price. Positive rates mean longs pay shorts, negative rates mean shorts pay longs.
+Funding rates are payments between traders to keep perpetual futures prices aligned with the spot prices. Positive rates mean longs pay shorts, negative rates mean shorts pay longs.
 
 Although there's already a vast number of apps which help you monitor and analyse historical funding data, they typically don't offer funding rate average calculations over past N days (without skewing the data for newly released coins)
 
