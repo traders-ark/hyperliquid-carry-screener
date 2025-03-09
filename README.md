@@ -3,4 +3,6 @@ Funding rates are payments between traders to keep perpetual futures prices alig
 
 Although plenty of historical funding rate monitoring tools already exist, none typically offer t-N funding rate averages, especially with a clear dashboard and without skewing the averages for newly released tickers.
 
-That's what this screener is meant for. It is used to monitor / manually run cross-sectional carry strategies on Hyperliquid exchange (might add more in the future). Unlike regular carry where you have one spot leg and one futures leg in a trade, xs-carry drops the spot leg comletely by being long/short the extremes for top N negative/positive funding rates. 
+That's what this screener is for —— monitor / manually run carry strategies on Hyperliquid exchange (might add more in the future). 
+
+It's particularly useful for cross-sectional carry. Unlike regular carry with one spot leg & one futures leg, xs-carry eliminates the spot leg comletely by being long/short the extremes for top N negative/positive funding rates. 
