@@ -5,4 +5,4 @@ Although plenty of historical funding rate monitoring tools already exist, none 
 
 That's what this screener is for —— monitor / manually run carry strategies on Hyperliquid exchange (might add more in the future). 
 
-It's particularly useful for cross-sectional carry. Unlike regular carry with one spot leg & one futures leg, xs-carry eliminates the spot leg comletely by being long/short the extremes for top N negative/positive funding rates. 
+It's particularly useful for cross-sectional carry. Unlike regular carry with one spot leg & one futures leg, xs-carry eliminates the spot leg comletely by being long/short the extremes for top N negative/positive funding rates.
