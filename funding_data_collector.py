@@ -133,7 +133,7 @@ def check_missing_data_past_24h(existing_df, coins):
             recent_df['time_dt'] = pd.to_datetime(recent_df['time'], unit='ms', utc=True)
             
             # Round timestamps to the nearest hour to match expected hourly data points
-            recent_df['hour'] = recent_df['time_dt'].dt.floor('H')
+            recent_df['hour'] = recent_df['time_dt'].dt.floor('h')
             
             # Get unique hours in the existing data for the past 24 hours
             existing_hours_df = recent_df[
